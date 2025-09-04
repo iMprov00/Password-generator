@@ -1,7 +1,21 @@
 class Generator
+    attr_writer :length
 
-    
+    def generate_integer
 
+    end
+
+    def generate_string
+
+    end
+
+    def generate_integer_and_string
+
+    end
+
+    def random(length)
+        
+    end
 end
 
 class Message
