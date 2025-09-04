@@ -74,5 +74,96 @@ class Message
 	def clear 
 		puts "\e[H\e[2J"
 	end 
+
+    def error
+        puts "Некорретный ввод!"
+    end
+
+    def next 
+        print "Нажмите Enter чтобы продолжить..."
+    end
 end
 
+def slepeng
+    sleep(1)
+end
+
+message = Message.new
+
+
+message.clear
+message.welcome
+slepeng
+
+loop do 
+    message.clear
+
+    generate = Generator.new
+
+    message.menu 
+    message.input
+    input = gets.chomp
+
+    case input
+    when "1"
+
+        message.clear
+        message.generate_password_menu
+        message.input
+        input_2 = gets.chomp
+
+        case input_2
+        when "1"
+            message.clear
+            message.length
+            message.input
+            input_length = gets.to_i
+
+            generate.generate_integer(input_length)
+            message.result(generate.password)
+
+            message.next
+            gets
+
+        when "2"
+            message.clear
+            message.length
+            message.input
+            input_length = gets.to_i
+
+            generate.generate_string(input_length)
+            message.result(generate.password)
+
+            message.next
+            gets
+
+        when "3"
+            message.clear
+            message.length
+            message.input
+            input_length = gets.to_i
+
+            generate.generate_integer_and_string(input_length)
+            message.result(generate.password)
+
+            message.next
+            gets
+
+        when "4"
+            return
+        else
+            message.clear
+            message.error
+            slepeng
+        end
+    when "2"
+        message.clear
+        message.exit
+        slepeng
+        exit
+    else 
+        message.clear
+        message.error
+        slepeng
+    end
+end
