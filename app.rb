@@ -1,3 +1,9 @@
+class Default_data
+    def default_string
+        alphabet = [*('a'..'z')]
+    end
+end
+
 class Generator
     attr_writer :length
 
@@ -14,7 +20,7 @@ class Generator
     end
 
     def random(length)
-        
+
     end
 end
 
