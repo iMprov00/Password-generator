@@ -11,22 +11,20 @@ class Generator
         @password = ""
     end
 
-    def generate_integer
-
+    def generate_integer(length)
+        length.times{@password += random_integer}
     end
 
-    def generate_string
-
+    def generate_string(length)
+        length.times{@password += random_string}
     end
 
     def generate_integer_and_string(length)
-        length.times do |n|
-            @password += random_variable
-        end
+        length.times{@password += random_variable}
     end
 
     def random_integer
-        rand(0..9)
+        rand(0..9).to_s
     end
 
     def random_string
@@ -35,7 +33,7 @@ class Generator
     end
 
     def random_variable
-        rand(0..1) == 1 ? random_integer.to_s : random_string
+        rand(0..1) == 1 ? random_integer : random_string
     end
 end
 
@@ -72,11 +70,9 @@ class Message
     def result(password)
         puts "Результат: #{password}"
     end
+
+	def clear 
+		puts "\e[H\e[2J"
+	end 
 end
 
-i = gets.to_i
-g = Generator.new
-
-g.generate_integer_and_string(i)
-
-puts g.password
