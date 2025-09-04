@@ -5,7 +5,11 @@ class Default_data
 end
 
 class Generator
-    attr_writer :length
+    attr_reader :password
+    
+    def initialize
+        @password = ""
+    end
 
     def generate_integer
 
@@ -15,17 +19,27 @@ class Generator
 
     end
 
-    def generate_integer_and_string
-
+    def generate_integer_and_string(length)
+        length.times do |n|
+            @password += random_variable
+        end
     end
 
-    def random(length)
+    def random_integer
+        rand(0..9)
+    end
 
+    def random_string
+        alphabet = Default_data.new
+        rand(0..1) == 1 ? alphabet.default_string[rand(26)].capitalize : alphabet.default_string[rand(26)]
+    end
+
+    def random_variable
+        rand(0..1) == 1 ? random_integer.to_s : random_string
     end
 end
 
 class Message
-
     def welcome
         puts "Добро пожаловать в генератор паролей!"
     end
@@ -59,3 +73,10 @@ class Message
         puts "Результат: #{password}"
     end
 end
+
+i = gets.to_i
+g = Generator.new
+
+g.generate_integer_and_string(i)
+
+puts g.password
